@@ -584,6 +584,7 @@ func ContinuousDiscovery() {
 
 	go ometrics.InitMetrics()
 	go ometrics.InitGraphiteMetrics()
+	go ometrics.InitPrometheusMetrics()
 	go acceptSignals()
 	go kv.InitKVStores()
 	if config.Config.RaftEnabled {

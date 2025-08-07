@@ -27,11 +27,13 @@ import (
 	"github.com/go-martini/martini"
 	"github.com/martini-contrib/auth"
 	"github.com/martini-contrib/render"
+	"github.com/prometheus/client_golang/prometheus/promhttp"
 	"github.com/rcrowley/go-metrics"
 	"github.com/rcrowley/go-metrics/exp"
 
 	"github.com/openark/orchestrator/go/config"
 	"github.com/openark/orchestrator/go/inst"
+	ometrics "github.com/openark/orchestrator/go/metrics"
 )
 
 // HttpWeb is the web requests server, mapping each request to a web page
@@ -473,4 +475,15 @@ func (this *HttpWeb) RegisterDebug(m *martini.ClassicMartini) {
 
 	// go-metrics
 	m.Get(this.URLPrefix+"/debug/metrics", exp.ExpHandler(metrics.DefaultRegistry))
+	
+	// Prometheus metrics
+	if ometrics.IsPrometheusEnabled() {
+		prometheusPath := config.Config.PrometheusPath
+		if prometheusPath == "" {
+			prometheusPath = "/metrics"
+		}
+		m.Get(this.URLPrefix+prometheusPath, func(w http.ResponseWriter, r *http.Request) {
+			promhttp.HandlerFor(ometrics.GetPrometheusRegistry(), promhttp.HandlerOpts{}).ServeHTTP(w, r)
+		})
+	}
 }

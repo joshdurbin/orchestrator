@@ -267,6 +267,10 @@ type Configuration struct {
 	GraphitePath                               string            // Prefix for graphite path. May include {hostname} magic placeholder
 	GraphiteConvertHostnameDotsToUnderscores   bool              // If true, then hostname's dots are converted to underscores before being used in graphite path
 	GraphitePollSeconds                        int               // Graphite writes interval. 0 disables.
+	PrometheusEnabled                          bool              // Enable Prometheus metrics endpoint
+	PrometheusPath                             string            // Path for Prometheus metrics endpoint. Defaults to "/metrics"
+	PrometheusNamespace                        string            // Namespace prefix for Prometheus metrics. Defaults to "orchestrator"
+	PrometheusSubsystem                        string            // Subsystem prefix for Prometheus metrics. Defaults to ""
 	URLPrefix                                  string            // URL prefix to run orchestrator on non-root web path, e.g. /orchestrator to put it behind nginx.
 	DiscoveryIgnoreReplicaHostnameFilters      []string          // Regexp filters to apply to prevent auto-discovering new replicas. Usage: unreachable servers due to firewalls, applications which trigger binlog dumps
 	DiscoveryIgnoreMasterHostnameFilters       []string          // Regexp filters to apply to prevent auto-discovering a master. Usage: pointing your master temporarily to replicate some data from external host
@@ -453,6 +457,10 @@ func newConfiguration() *Configuration {
 		GraphitePath:                               "",
 		GraphiteConvertHostnameDotsToUnderscores:   true,
 		GraphitePollSeconds:                        60,
+		PrometheusEnabled:                          false,
+		PrometheusPath:                             "/metrics",
+		PrometheusNamespace:                        "orchestrator",
+		PrometheusSubsystem:                        "",
 		URLPrefix:                                  "",
 		DiscoveryIgnoreReplicaHostnameFilters:      []string{},
 		DiscoveryIgnoreReplicationUsernameFilters:  []string{},

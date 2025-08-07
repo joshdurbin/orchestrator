@@ -1,0 +1,44 @@
+{
+  "Debug": false,
+  "ListenAddress": ":3000",
+  
+  "MySQLTopologyUser": "orchestrator",
+  "MySQLTopologyPassword": "orchestrator_password",
+  
+  "MySQLOrchestratorHost": "127.0.0.1",
+  "MySQLOrchestratorPort": 3306,
+  "MySQLOrchestratorDatabase": "orchestrator",
+  "MySQLOrchestratorUser": "orchestrator",
+  "MySQLOrchestratorPassword": "orchestrator_password",
+  
+  "InstancePollSeconds": 5,
+  "UnseenInstanceForgetHours": 240,
+  "ReasonableReplicationLagSeconds": 10,
+  
+  "ApplyMySQLPromotionAfterMasterFailover": true,
+  "PreventCrossDataCenterMasterFailover": false,
+  "FailoverDetectionBeforeFailover": true,
+  
+  "RecoveryPeriodBlockSeconds": 3600,
+  "RecoveryIgnoreHostnameFilters": [],
+  "RecoverMasterClusterFilters": ["*"],
+  "RecoverIntermediateMasterClusterFilters": ["*"],
+  
+  "AuthenticationMethod": "",
+  "HTTPAuthUser": "",
+  "HTTPAuthPassword": "",
+  
+  "URLPrefix": "",
+  "StatusEndpoint": "/api/status",
+  "StatusSimpleHealth": true,
+  
+  "GraphiteAddr": "",
+  "GraphitePath": "",
+  "GraphiteConvertHostnameDotsToUnderscores": true,
+  "GraphitePollSeconds": 60,
+  
+  "PrometheusEnabled": true,
+  "PrometheusPath": "/metrics",
+  "PrometheusNamespace": "orchestrator",
+  "PrometheusSubsystem": ""
+}

@@ -161,6 +161,10 @@
   "GraphiteAddr": "",
   "GraphitePath": "",
   "GraphiteConvertHostnameDotsToUnderscores": true,
+  "PrometheusEnabled": false,
+  "PrometheusPath": "/metrics",
+  "PrometheusNamespace": "orchestrator",
+  "PrometheusSubsystem": "",
   "#": "-----",
   "ConsulAddress": "",
   "ConsulAclToken": ""
